@@ -1,17 +1,17 @@
 import { Route, Routes } from "react-router-dom";
 import { Navbar, Footer } from "./components/export";
-import { Home, Movies, AboutUs, ContactUs } from "./pages/export";
+import { Movies } from "./pages/export";
+import Genres from "./pages/Genres";
 
 function App() {
   return (
     <>
       <div className="overflow-hidden">
         <Navbar />
+
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/movies" element={<Movies />} />
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/" element={<Movies />} />
+          <Route path="/genres" element={<Genres />} />
         </Routes>
         <Footer />
       </div>
