@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Navbar, Footer } from "./components/export";
-import { Movies } from "./pages/export";
-import Genres from "./pages/Genres";
+import { MovieDetails, Movies, Genres } from "./pages/export";
 
 function App() {
   return (
@@ -12,8 +11,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Movies />} />
           <Route path="/genres" element={<Genres />} />
+          <Route path="/movies/:id" element={<MovieDetails />} />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   );

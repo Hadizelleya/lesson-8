@@ -60,7 +60,11 @@ export default function Footer() {
 
       <div className="flex flex-col items-center gap-2">
         {supportLinks.map((link) => (
-          <Link className="text-2xl text-(--color-white)" to={link.value}>
+          <Link
+            key={link.value}
+            className="text-2xl text-(--color-white)"
+            to={link.value}
+          >
             {link.label}
           </Link>
         ))}
