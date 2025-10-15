@@ -70,7 +70,7 @@ import { useFetchHook } from "../hooks/useFetchHook";
 // };
 
 const BASE_URL = "https://api.themoviedb.org/3";
-const API_KEY = "6bcfb89bb3de7bbf30554d493425ca3d";
+const API_KEY = "your api key";
 
 export default function Movies() {
   const {
