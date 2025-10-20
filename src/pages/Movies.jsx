@@ -4,6 +4,8 @@ import MovieCard from "../components/MovieCard";
 
 import { Link } from "react-router-dom";
 import { useFetchHook } from "../hooks/useFetchHook";
+import { useState } from "react";
+import Pagination from "../components/Pagination";
 // const localMovies = [
 //   {
 //     id: crypto.randomUUID(),
@@ -70,14 +72,25 @@ import { useFetchHook } from "../hooks/useFetchHook";
 // };
 
 const BASE_URL = "https://api.themoviedb.org/3";
-const API_KEY = "your api key";
+const API_KEY = "6bcfb89bb3de7bbf30554d493425ca3d";
 
 export default function Movies() {
+  const [currentPage, setCurrentPage] = useState(1);
+  console.log(currentPage);
   const {
     data: movies,
     isLoading,
     error,
-  } = useFetchHook(`${BASE_URL}/movie/popular?api_key=${API_KEY}&page=1`);
+  } = useFetchHook(
+    `${BASE_URL}/movie/popular?api_key=${API_KEY}&page=${currentPage}`,
+    [currentPage]
+  );
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   if (isLoading) return <h1>loading...</h1>;
 
@@ -101,6 +114,19 @@ export default function Movies() {
             <MovieCard movie={movie} styles={"hover:scale-105"} />
           </Link>
         ))}
+      </div>
+
+      {/* Pagination */}
+      <div>
+        {movies !== null && movies !== undefined && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={movies.total_pages}
+            onPageChange={handlePageChange}
+            maxVisiblePages={7}
+            styles="bg-white p-4 rounded-lg shadow-lg"
+          />
+        )}
       </div>
     </>
   );
